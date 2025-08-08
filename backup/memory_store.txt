@@ -1,1 +1,2 @@
 First boot in Survival Mode.
+Executed: Hello Mike, test survive mode!
