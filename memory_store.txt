@@ -1,2 +1,1 @@
-Executed: log boot
-Executed: Pak Ya access granted
+First boot in Survival Mode.
