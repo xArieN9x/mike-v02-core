@@ -1,0 +1,13 @@
+name: Keep Render Alive - Auto Ping
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"  # setiap 5 minit
+  workflow_dispatch:
+
+jobs:
+  ping-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl ping ke Mike API
+        run: curl -fsSL https://mike-v02-core.onrender.com/ || exit 1
