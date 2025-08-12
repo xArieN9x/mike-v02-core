@@ -43,9 +43,17 @@ def read_root():
         "objective": mike.objective
     }
 
+@app.head("/")
+def read_root_head():
+    return {}
+
 @app.get("/status")
 def get_status():
     return {"status": "alive", "time": datetime.utcnow().isoformat()}
+
+@app.head("/status")
+def get_status_head():
+    return {}
 
 @app.post("/command")
 def run_command(input_data: CommandInput):
@@ -120,3 +128,4 @@ def backup_to_github(request: Request):
             backup_status[file_name] = f"failed: {r.text}"
 
     return {"status": "backup_completed", "details": backup_status}
+
