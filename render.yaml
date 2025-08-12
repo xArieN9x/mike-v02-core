@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mike-core
+    repo: https://github.com/xArieN9x/mike-v02-core
+    branch: main
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn mike_v02_core:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /status
+    region: singapore
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHAT_ID
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_REPO
+        value: xArieN9x/mike-v02-core
+      - key: GITHUB_PATH
+        value: backup
