@@ -28,7 +28,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO: ${{ secrets.GITHUB_REPO }}
-        working-directory: ${{ github.workspace }}/mike-v02-core
+        working-directory: ${{ github.workspace }}
         run: |
           node monitor_trial.js
 
