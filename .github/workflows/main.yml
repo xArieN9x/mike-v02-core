@@ -19,4 +19,4 @@ jobs:
         source_branch: main
         destination_repo: xArieN9x/mike-v02-core-sec-source
         destination_branch: main
-        github_token: ${{ secrets.MIKEY_TOKEN }}
+        github_token: ${{ secrets.mikey_token }}
