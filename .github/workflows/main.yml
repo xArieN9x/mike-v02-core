@@ -15,12 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to secondary repo
-        run: |
-          git remote add secondary https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
-          git push secondary main --force
-        env:
-          GIT_AUTHOR_NAME: github-actions
-          GIT_AUTHOR_EMAIL: github-actions@github.com
-          GIT_COMMITTER_NAME: github-actions
-          GIT_COMMITTER_EMAIL: github-actions@github.com
+      - name: Mirror to secondary repo
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: ${{ github.repository }}
+          source_branch: main
+          destination_repo: https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
+          destination_branch: main
+          github_token: ${{ secrets.MIKEY_PAT }}
