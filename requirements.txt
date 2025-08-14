@@ -1,7 +1,5 @@
 fastapi
-hypercorn
+uvicorn[standard]
 requests
 pydantic
-flask
-gunicorn
-uvicorn[standard]
+
