@@ -15,9 +15,12 @@ jobs:
         with:
           fetch-depth: 0  # ambik semua history
 
+      - name: Set Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Mirror all files to secondary repo
         run: |
-          git remote add secondary https://github.com/xArieN9x/mike-v02-core-sec-source.git
+          git remote add secondary https://x-access-token:${{ secrets.mikey_token }}@github.com/xArieN9x/mike-v02-core-sec-source.git
           git push secondary main --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.mikey_token }}
