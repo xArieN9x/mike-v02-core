@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout main branch
-      uses: actions/checkout@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v3
 
-    - name: Push to secondary repo
-      uses: repo-sync/github-sync@v2
-      with:
-        source_branch: main
-        destination_repo: xArieN9x/mike-v02-core-sec-source
-        destination_branch: main
-        github_token: ${{ secrets.mikey_token }}
+      - name: Mirror to secondary repo
+        uses: repo-sync/github-sync@v2
+        with:
+          source_branch: main
+          destination_branch: main
+          destination_repo: xArieN9x/mike-v02-core-sec-source
+          github_token: ${{ secrets.mikey_token }}
+
