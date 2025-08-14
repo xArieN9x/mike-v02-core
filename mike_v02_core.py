@@ -129,3 +129,11 @@ def backup_to_github(request: Request):
 
     return {"status": "backup_completed", "details": backup_status}
 
+import os
+
+port = int(os.environ.get("PORT", 8000))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("mike_v02_core:app", host="0.0.0.0", port=port)
+
