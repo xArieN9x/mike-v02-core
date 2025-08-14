@@ -3,23 +3,28 @@ name: Auto Mirror main to secondary
 on:
   push:
     branches:
-      - main
+      - main  # trigger bila ada commit baru di main
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main branch
+      - name: Checkout main repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # ambik semua commit history
 
       - name: Mirror to secondary repo
-        uses: repo-sync/github-sync@v2
-        with:
-          source_repo: ${{ github.repository }}
-          source_branch: main
-          destination_repo: https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
-          destination_branch: main
-          github_token: ${{ secrets.MIKEY_PAT }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          # Tambah secondary repo dengan PAT
+          git remote add secondary https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
+
+          # Push semua branch
+          git push secondary --all --force
+
+          # Push semua tags
+          git push secondary --tags --force
