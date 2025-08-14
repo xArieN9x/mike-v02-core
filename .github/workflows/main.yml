@@ -3,7 +3,7 @@ name: Auto Mirror main to secondary
 on:
   push:
     branches:
-      - main  # trigger bila ada commit baru di main
+      - main
 
 jobs:
   mirror:
@@ -13,18 +13,15 @@ jobs:
       - name: Checkout main repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # ambik semua commit history
+          fetch-depth: 0
 
       - name: Mirror to secondary repo
+        env:
+          PAT_TOKEN: ${{ secrets.MIKEY_PAT }}  # pastikan PAT ada akses full repo secondary
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-          # Tambah secondary repo dengan PAT
-          git remote add secondary https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
-
-          # Push semua branch
+          git remote add secondary https://x-access-token:${PAT_TOKEN}@github.com/xArieN9x/mike-v02-core-sec-source.git
           git push secondary --all --force
-
-          # Push semua tags
           git push secondary --tags --force
