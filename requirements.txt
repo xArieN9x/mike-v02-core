@@ -1,5 +1,6 @@
-# requirements.txt
 fastapi
-uvicorn
+uvicorn[standard]
 requests
 pydantic
+flask
+gunicorn
