@@ -4,3 +4,4 @@ requests
 pydantic
 flask
 gunicorn
+uvicorn[standard]
