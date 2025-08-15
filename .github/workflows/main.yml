@@ -8,16 +8,26 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout main repo
+      # 1️⃣ Checkout repo utama
+      - name: Checkout primary repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Add secondary repo as remote
+      # 2️⃣ Set git user supaya commit dari Actions tak error
+      - name: Setup git user
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      # 3️⃣ Add secondary repo sebagai remote dengan PAT owner
+      - name: Add secondary repo remote
         run: |
           git remote add secondary https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
 
-      - name: Push to secondary
+      # 4️⃣ Push semua branch ke secondary repo
+      - name: Push to secondary repo
         run: |
           git push secondary main --force
