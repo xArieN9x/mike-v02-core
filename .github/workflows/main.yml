@@ -8,18 +8,16 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Mirror to secondary repo
-        uses: repo-sync/github-sync@v2
-        with:
-          source_repo: ${{ github.repository }}
-          source_branch: main
-          destination_repo: https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
-          destination_branch: main
-          github_token: ${{ secrets.MIKEY_PAT }}
+      - name: Add secondary repo as remote
+        run: |
+          git remote add secondary https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
+
+      - name: Push to secondary
+        run: |
+          git push secondary main --force
