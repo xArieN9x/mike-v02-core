@@ -16,12 +16,10 @@ jobs:
           fetch-depth: 0
 
       - name: Mirror to secondary repo
-        env:
-          PAT_TOKEN: ${{ secrets.MIKEY_PAT }}  # pastikan PAT ada akses full repo secondary
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-          git remote add secondary https://x-access-token:${PAT_TOKEN}@github.com/xArieN9x/mike-v02-core-sec-source.git
-          git push secondary --all --force
-          git push secondary --tags --force
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: ${{ github.repository }}
+          source_branch: main
+          destination_repo: https://x-access-token:${{ secrets.MIKEY_PAT }}@github.com/xArieN9x/mike-v02-core-sec-source.git
+          destination_branch: main
+          github_token: ${{ secrets.MIKEY_PAT }}
