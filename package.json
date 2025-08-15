@@ -1,10 +1,10 @@
 {
-  "name": "brain",
+  "name": "mike-v02-core",
   "version": "1.0.0",
-  "description": "",
-  "main": "telegramGPTBot.js",
+  "description": "Telegram bot untuk Pak Ya",
+  "main": "brain/telegramGPTBot.js",
   "scripts": {
-    "start": "node telegramGPTBot.js"
+    "start": "node brain/telegramGPTBot.js"
   },
   "keywords": [],
   "author": "",
