@@ -1,0 +1,18 @@
+{
+  "name": "brain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "telegramGPTBot.js",
+  "scripts": {
+    "start": "node telegramGPTBot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.55.0",
+    "dotenv": "^17.2.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "openai": "^5.12.2"
+  }
+}
