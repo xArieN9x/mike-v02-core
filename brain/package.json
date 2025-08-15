@@ -2,9 +2,9 @@
   "name": "brain",
   "version": "1.0.0",
   "description": "",
-  "main": "telegramBot.js",
+  "main": "telegramGPTBot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node telegramGPTBot.js"
   },
   "keywords": [],
   "author": "",
